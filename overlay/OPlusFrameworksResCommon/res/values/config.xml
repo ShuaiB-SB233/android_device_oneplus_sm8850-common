@@ -94,7 +94,7 @@
     <bool name="config_sustainedPerformanceModeSupported">true</bool>
 
     <!-- Default files to pin via Pinner Service -->
-    <string-array translatable="false" name="config_defaultPinnerServiceFiles">
+    <string-array name="config_defaultPinnerServiceFiles" translatable="false">
         <item>"/system/framework/framework.jar"</item>
         <item>"/system/framework/services.jar"</item>
         <item>"/apex/com.android.art/javalib/core-oj.jar"</item>

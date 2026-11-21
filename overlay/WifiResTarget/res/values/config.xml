@@ -25,27 +25,41 @@
     <!-- Wifi driver supports 6GHz band for softap when chip support 6GHz -->
     <bool name="config_wifiSoftap6ghzSupported">true</bool>
 
-    <!-- Maximum number of multi-link devices supported by the soft AP. -->
-    <integer name="config_wifiSoftApMaxNumberMLDSupported">2</integer>
-
-    <!-- Bridged AP and STA + bridged AP modes remain conditional on the
-         interface combinations supported by the Wi-Fi HAL. -->
+    <!-- Indicates that bridged AP mode is supported on this device provided that
+     the device interface combination allows for it -->
     <bool name="config_wifiBridgedSoftApSupported">true</bool>
-    <bool name="config_wifiStaWithBridgedSoftApConcurrencySupported">true</bool>
 
-    <!-- Use the vendor HAL roaming API to disable firmware roaming. -->
-    <bool name="config_wifiUseHalApiToDisableFwRoaming">true</bool>
+    <!-- Indicates that STA + bridged AP concurrency mode is supported on this device provided
+     that the device interface combination allows for it-->
+    <bool name="config_wifiStaWithBridgedSoftApConcurrencySupported">true</bool>
 
     <!-- Configure wifi tcp buffersizes in the form:
          rmem_min,rmem_def,rmem_max,wmem_min,wmem_def,wmem_max -->
     <string name="config_wifi_tcp_buffers" translatable="false">524288,1048576,8808040,524288,1048576,6710886</string>
 
+    <!-- Enable concurrent peer to peer + internet connectivity
+         Note: this is conditional on the device supporting dual concurrent STAs. -->
+    <bool name="config_wifiMultiStaLocalOnlyConcurrencyEnabled">true</bool>
+
     <!-- Enable concurrent restricted connectivity + internet connectivity
          Note: this is conditional on the device supporting dual concurrent STAs. -->
     <bool name="config_wifiMultiStaRestrictedConcurrencyEnabled">true</bool>
 
-    <!-- Enable concurrent local-only + internet and internet + internet
-         connectivity when the device supports dual concurrent STAs. -->
-    <bool name="config_wifiMultiStaLocalOnlyConcurrencyEnabled">true</bool>
+    <!-- Enable concurrent internet connectivity + internet connectivity
+         Note: this is conditional on the device supporting dual concurrent STAs. -->
     <bool name="config_wifiMultiStaMultiInternetConcurrencyEnabled">true</bool>
+
+    <!-- Whether to use the explicit vendor HAL API: IWifiStaIface.setRoamingState for disabling fw roaming (only needed if
+         setting the bssid on the connection alone does not disable fw roaming on this chip) -->
+    <bool name="config_wifiUseHalApiToDisableFwRoaming">true</bool>
+
+    <!-- integer indicating the maximum number of MLDs supported for multi-link operation (MLO)
+         SoftAp. Each multi-link device (AP MLD) can be operated with multiple links or single link.
+         It is required to configure it at least 1 for multiple links MLO SoftAp. Default value 0 is
+         treated as device does NOT support multiple links MLO SoftAp and the maximum
+         number of MLDs is decided by configuration, config_wifiSoftApSingleLinkMloInBridgedModeSupported.
+         (i.e. 2 when config_wifiSoftApSingleLinkMloInBridgedModeSupported is true and 1 when
+         config_wifiSoftApSingleLinkMloInBridgedModeSupported is false.)
+         -->
+    <integer name="config_wifiSoftApMaxNumberMLDSupported">2</integer>
 </resources>
